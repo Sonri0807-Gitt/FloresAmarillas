@@ -1,0 +1,72 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #1a1a1a; 
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.tree-canvas {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    overflow: visible;
+}
+
+.trunk {
+    width: 22px;
+    height: 100px;
+    background: linear-gradient(to right, #4e342e, #5d4037);
+    position: absolute;
+    bottom: -15px; 
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px 10px 0 0;
+    z-index: 1;
+}
+
+.message-card {
+    background: #000;
+    padding: 25px 20px;
+    border-radius: 30px 30px 0 0;
+    text-align: center;
+    color: white;
+    z-index: 10;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+}
+
+.title { color: #ffca28; font-size: 1.5rem; margin-bottom: 10px; }
+.dedication { font-size: 0.85rem; color: #bbb; font-style: italic; margin-bottom: 20px; line-height: 1.4; }
+
+.countdown {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ffa000;
+    background: rgba(255,255,255,0.05);
+    padding: 12px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.flower {
+    position: absolute !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 5;
+    /* Resplandor aumentado para rellenar visualmente micro-huecos */
+    filter: drop-shadow(0 0 5px rgba(255, 202, 40, 0.8));
+    animation: bloom 0.6s ease-out forwards;
+}
+
+@keyframes bloom {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.footer-love { margin-top: 15px; color: #ffca28; letter-spacing: 2px; font-size: 0.8rem; }
