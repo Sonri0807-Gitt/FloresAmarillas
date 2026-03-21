@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Para mi Amor 🌻</title>
+    <title>Para Miozotty 🌻</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,24 +14,43 @@
         </div>
 
         <div class="message-card">
-            <h1 class="title">
-                Hoy 21 de Marzo No Pude Darte Tus Flores Amarillas <br>
-                Pero Te Hice Esto Amor 💜
-            </h1>
-            <p class="dedication">
-                "Si pudiera elegir un lugar seguro, sería a tu lado. <br>
-                Cuanto más tiempo estoy contigo, más te amo."
-            </p>
-            <div class="timer-box">
-                <p style="color: #ffca28; font-size: 0.8rem; margin-bottom: 4px;">Nuestro amor comenzó hace...</p>
+            <h1 class="title">Flores Amarillas para Miozotty 💜</h1>
+            <p class="dedication">"Si pudiera elegir un lugar seguro, sería a tu lado. <br> Cuanto más tiempo estoy contigo, más te amo."</p>
+            
+            <div class="timer-section">
+                <p class="timer-label">Nuestro amor comenzó hace...</p>
                 <div class="countdown">
-                    <span id="days">0</span>d <span id="hours">0</span>h 
-                    <span id="minutes">0</span>m <span id="seconds">0</span>s
+                    <span id="d">0</span>d <span id="h">0</span>h <span id="m">0</span>m <span id="s">0</span>s
                 </div>
             </div>
-            <p class="footer-love">— Eres mi vida entera —</p>
+            <p class="footer-love">— 21 de Marzo —</p>
         </div>
     </div>
-    <script src="script.js"></script>
-</body>
-</html>
+
+    <script>
+        // Fecha: 10 de Agosto de 2021
+        const inicio = new Date("2021-08-10T00:00:00");
+
+        function actualizar() {
+            const ahora = new Date();
+            const diff = ahora - inicio;
+
+            document.getElementById("d").innerText = Math.floor(diff / 86400000);
+            document.getElementById("h").innerText = Math.floor((diff / 3600000) % 24);
+            document.getElementById("m").innerText = Math.floor((diff / 60000) % 60);
+            document.getElementById("s").innerText = Math.floor((diff / 1000) % 60);
+        }
+
+        setInterval(actualizar, 1000);
+        actualizar();
+
+        // Generador de Corazón
+        const container = document.getElementById("flowers-container");
+        const canvas = document.getElementById("tree-canvas");
+        for (let i = 0; i < 850; i++) {
+            setTimeout(() => {
+                const f = document.createElement("div");
+                f.className = "flower";
+                f.innerHTML = "🌻";
+                const t = Math.random() * Math.PI * 2;
+                const r = Math
