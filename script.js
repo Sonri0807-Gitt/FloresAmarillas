@@ -1,11 +1,13 @@
+// Fecha de inicio: 10 de Agosto de 2021
 const startDate = new Date("2021-08-10T00:00:00");
 
 function updateTimer() {
     const now = new Date();
     const diff = now - startDate;
+
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / 1000 / 60) % 60);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
 
     document.getElementById("days").innerText = days;
@@ -17,9 +19,7 @@ function updateTimer() {
 function createHeartTree() {
     const container = document.getElementById("flowers-container");
     const canvas = document.getElementById("tree-canvas");
-    
-    // 800 flores para un relleno absoluto y frondoso
-    const totalFlowers = 800; 
+    const totalFlowers = 900; 
 
     for (let i = 0; i < totalFlowers; i++) {
         setTimeout(() => {
@@ -27,42 +27,29 @@ function createHeartTree() {
             flower.className = "flower";
             flower.innerHTML = "🌻";
             
-            // Generamos un ángulo aleatorio
             const t = Math.random() * Math.PI * 2;
+            const r = Math.pow(Math.random(), 0.4); 
             
-            // Lógica de relleno mejorada:
-            // Usamos Math.pow con un valor bajo (0.45) para empujar agresivamente 
-            // la mayoría de las flores hacia el núcleo del corazón, 
-            // eliminando los huecos de la captura.
-            const r = Math.pow(Math.random(), 0.45); 
-            
-            // Ecuación paramétrica del corazón para una forma perfecta
             const x = 16 * Math.pow(Math.sin(t), 3);
             const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
 
-            // Ajuste de escala grande para que llene la pantalla
-            const scale = 11.2; 
-            // Posicionamos el centro del corazón justo arriba del tronco
+            const scale = 10.5; 
             const centerX = canvas.offsetWidth / 2;
             const centerY = canvas.offsetHeight * 0.45;
 
             flower.style.left = (centerX + x * scale * r) + "px";
             flower.style.top = (centerY + y * scale * r) + "px";
             
-            // Variación de tamaño para naturalidad y cobertura
-            // Las flores interiores son un poquito más grandes para tapar huecos
-            const sizeVar = (1 - r) * 10;
-            const size = 18 + sizeVar + Math.random() * 10;
+            const size = 16 + Math.random() * 14;
             flower.style.fontSize = size + "px";
-            
-            // Rotación aleatoria para que parezca un árbol natural
             flower.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 360}deg)`;
             
             container.appendChild(flower);
-        }, i * 5); // Aparición rápida secuencial
+        }, i * 4);
     }
 }
 
+// Iniciar procesos
 setInterval(updateTimer, 1000);
 window.onload = () => {
     updateTimer();
@@ -73,7 +60,7 @@ function createFallingPetals() {
     const container = document.body;
     setInterval(() => {
         const petal = document.createElement("div");
-        petal.innerHTML = "🟨 "; // Puedes usar 🌻 o ✨ también
+        petal.innerHTML = "🟨"; // Puedes usar 🌻 o ✨ también
         petal.style.position = "fixed";
         petal.style.top = "-20px";
         petal.style.left = Math.random() * 100 + "vw";
@@ -103,4 +90,3 @@ window.onload = () => {
     if (originalOnload) originalOnload();
     createFallingPetals();
 };
-
