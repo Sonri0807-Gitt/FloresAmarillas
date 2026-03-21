@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="main-container">
-        <div class="tree-canvas" id="tree-canvas">
+        <div id="tree-canvas" class="tree-canvas">
             <div id="flowers-container"></div>
             <div class="trunk"></div>
         </div>
@@ -20,7 +20,7 @@
             <div class="timer-section">
                 <p class="timer-label">Nuestro amor comenzó hace...</p>
                 <div class="countdown">
-                    <span id="d">0</span>d <span id="h">0</span>h <span id="m">0</span>m <span id="s">0</span>s
+                    <span id="dias">0</span>d <span id="horas">0</span>h <span id="minutos">0</span>m <span id="segundos">0</span>s
                 </div>
             </div>
             <p class="footer-love">— 21 de Marzo —</p>
@@ -28,29 +28,54 @@
     </div>
 
     <script>
-        // Fecha: 10 de Agosto de 2021
-        const inicio = new Date("2021-08-10T00:00:00");
+        // Lógica del Contador
+        const fechaInicio = new Date("2021-08-10T00:00:00");
 
-        function actualizar() {
+        function actualizarContador() {
             const ahora = new Date();
-            const diff = ahora - inicio;
+            const diff = ahora - fechaInicio;
 
-            document.getElementById("d").innerText = Math.floor(diff / 86400000);
-            document.getElementById("h").innerText = Math.floor((diff / 3600000) % 24);
-            document.getElementById("m").innerText = Math.floor((diff / 60000) % 60);
-            document.getElementById("s").innerText = Math.floor((diff / 1000) % 60);
+            document.getElementById("dias").innerText = Math.floor(diff / 86400000);
+            document.getElementById("horas").innerText = Math.floor((diff / 3600000) % 24);
+            document.getElementById("minutos").innerText = Math.floor((diff / 60000) % 60);
+            document.getElementById("segundos").innerText = Math.floor((diff / 1000) % 60);
         }
 
-        setInterval(actualizar, 1000);
-        actualizar();
+        // Lógica del Corazón
+        function crearCorazon() {
+            const contenedor = document.getElementById("flowers-container");
+            const canvas = document.getElementById("tree-canvas");
+            if (!contenedor || !canvas) return;
 
-        // Generador de Corazón
-        const container = document.getElementById("flowers-container");
-        const canvas = document.getElementById("tree-canvas");
-        for (let i = 0; i < 850; i++) {
-            setTimeout(() => {
-                const f = document.createElement("div");
-                f.className = "flower";
-                f.innerHTML = "🌻";
-                const t = Math.random() * Math.PI * 2;
-                const r = Math
+            for (let i = 0; i < 800; i++) {
+                setTimeout(() => {
+                    const flor = document.createElement("div");
+                    flor.className = "flower";
+                    flor.innerHTML = "🌻";
+                    
+                    const t = Math.random() * Math.PI * 2;
+                    const r = Math.pow(Math.random(), 0.45);
+                    const x = 16 * Math.pow(Math.sin(t), 3);
+                    const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+                    
+                    const escala = 10;
+                    const centroX = canvas.offsetWidth / 2;
+                    const centroY = canvas.offsetHeight * 0.45;
+
+                    flor.style.left = (centroX + x * escala * r) + "px";
+                    flor.style.top = (centroY + y * escala * r) + "px";
+                    flor.style.fontSize = (14 + Math.random() * 12) + "px";
+                    
+                    contenedor.appendChild(flor);
+                }, i * 3);
+            }
+        }
+
+        window.onload = () => {
+            actualizarContador();
+            setInterval(actualizarContador, 1000);
+            crearCorazon();
+        };
+    </script>
+</body>
+</html>
