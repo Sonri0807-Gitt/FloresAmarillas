@@ -2,7 +2,7 @@
 
 body {
     background-color: #1a1a1a; 
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100vh;
     overflow: hidden;
 }
@@ -15,24 +15,25 @@ body {
 
 .tree-canvas {
     position: relative;
-    height: 55vh; /* Menos alto para que el texto suba */
+    height: 55vh;
     width: 100%;
 }
 
 .trunk {
-    width: 16px;
+    width: 18px;
     height: 50px;
-    background: #4e342e;
+    background: linear-gradient(to right, #4e342e, #5d4037);
     position: absolute;
     bottom: 0; 
     left: 50%;
     transform: translateX(-50%);
+    border-radius: 5px 5px 0 0;
 }
 
 .message-card {
     background: #000;
     flex: 1;
-    padding: 15px 10px 40px 10px; /* Padding extra abajo para empujar los números */
+    padding: 15px 10px 40px 10px;
     border-radius: 30px 30px 0 0;
     text-align: center;
     color: white;
@@ -40,26 +41,27 @@ body {
     border-top: 1px solid #ffca28;
 }
 
-.title { color: #ffca28; font-size: 1.1rem; margin-bottom: 5px; }
-.dedication { font-size: 0.75rem; color: #bbb; font-style: italic; margin-bottom: 15px; }
+.title { color: #ffca28; font-size: 1.2rem; margin-bottom: 8px; }
+.dedication { font-size: 0.8rem; color: #bbb; font-style: italic; margin-bottom: 15px; }
 
-.timer-label { color: #ffca28; font-size: 0.8rem; margin-bottom: 5px; }
+.timer-label { color: #ffca28; font-size: 0.85rem; margin-bottom: 8px; }
 
 .countdown {
-    font-size: 1.3rem !important; 
+    font-size: 1.3rem; 
     font-weight: bold;
-    color: #ffa000 !important;
+    color: #ffa000;
     background: rgba(255,255,255,0.1);
     padding: 12px 20px;
     border-radius: 15px;
     display: inline-block;
+    border: 1px solid rgba(255,160,0,0.3);
 }
 
 .flower {
     position: absolute !important;
     transform: translate(-50%, -50%);
     z-index: 5;
-    filter: drop-shadow(0 0 3px rgba(255, 202, 40, 0.6));
+    filter: drop-shadow(0 0 4px rgba(255, 202, 40, 0.7));
 }
 
-.footer-love { margin-top: 15px; color: #ffca28; font-size: 0.7rem; font-weight: bold; }
+.footer-love { margin-top: 15px; color: #ffca28; font-size: 0.75rem; font-weight: bold; }
