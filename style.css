@@ -1,67 +1,90 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
-body {
+body { 
     background-color: #1a1a1a; 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 100vh;
-    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif; 
+    height: 100vh; 
+    overflow: hidden; 
 }
 
-.main-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+.main-container { 
+    display: flex; 
+    flex-direction: column; 
+    height: 100vh; 
 }
 
-.tree-canvas {
-    position: relative;
-    height: 55vh;
-    width: 100%;
+.tree-canvas { 
+    position: relative; 
+    height: 55vh; /* Altura ideal para el corazón */
+    width: 100%; 
 }
 
-.trunk {
-    width: 18px;
-    height: 50px;
-    background: linear-gradient(to right, #4e342e, #5d4037);
-    position: absolute;
+.trunk { 
+    width: 14px; 
+    height: 45px; 
+    background: #4e342e; 
+    position: absolute; 
     bottom: 0; 
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 5px 5px 0 0;
+    left: 50%; 
+    transform: translateX(-50%); 
+    border-radius: 3px; 
 }
 
 .message-card {
     background: #000;
     flex: 1;
-    padding: 15px 10px 40px 10px;
+    padding: 15px 10px 30px 10px;
     border-radius: 30px 30px 0 0;
     text-align: center;
     color: white;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
     border-top: 1px solid #ffca28;
+    box-shadow: 0 -10px 20px rgba(0,0,0,0.5);
 }
 
-.title { color: #ffca28; font-size: 1.2rem; margin-bottom: 8px; }
-.dedication { font-size: 0.8rem; color: #bbb; font-style: italic; margin-bottom: 15px; }
+.title { 
+    color: #ffca28; 
+    font-size: 1.1rem; 
+    margin-bottom: 5px; 
+}
 
-.timer-label { color: #ffca28; font-size: 0.85rem; margin-bottom: 8px; }
+.dedication { 
+    font-size: 0.75rem; 
+    color: #bbb; 
+    font-style: italic; 
+    margin-bottom: 12px; 
+}
+
+.timer-label { 
+    color: #ffca28; 
+    font-size: 0.8rem; 
+    margin-bottom: 5px; 
+}
 
 .countdown {
     font-size: 1.3rem; 
     font-weight: bold;
     color: #ffa000;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.08);
     padding: 12px 20px;
-    border-radius: 15px;
+    border-radius: 12px;
     display: inline-block;
-    border: 1px solid rgba(255,160,0,0.3);
+    border: 1px solid rgba(255,160,0,0.2);
 }
 
 .flower {
     position: absolute !important;
     transform: translate(-50%, -50%);
     z-index: 5;
-    filter: drop-shadow(0 0 4px rgba(255, 202, 40, 0.7));
+    filter: drop-shadow(0 0 2px rgba(255, 202, 40, 0.5));
 }
 
-.footer-love { margin-top: 15px; color: #ffca28; font-size: 0.75rem; font-weight: bold; }
+.footer-love { 
+    margin-top: 10px; 
+    color: #ffca28; 
+    font-size: 0.7rem; 
+    font-weight: bold; 
+}
