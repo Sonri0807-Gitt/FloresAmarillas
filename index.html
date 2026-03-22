@@ -14,10 +14,7 @@
         </div>
 
         <div class="message-card">
-                        <h1 class="title">
-                Hoy No Pude Darte Tus Flores Amarillas <br>
-                Pero Te Hice Esto Amor 💜
-                        </h1>
+            <h1 class="title">Flores Amarillas para Miozotty 💜</h1>
             <p class="dedication">"Si pudiera elegir un lugar seguro, sería a tu lado. <br> Cuanto más tiempo estoy contigo, más te amo."</p>
             
             <div class="timer-section">
@@ -31,46 +28,45 @@
     </div>
 
     <script>
-        // Lógica del Contador
         const fechaInicio = new Date("2021-08-10T00:00:00");
 
         function actualizarContador() {
             const ahora = new Date();
             const diff = ahora - fechaInicio;
-
             document.getElementById("dias").innerText = Math.floor(diff / 86400000);
             document.getElementById("horas").innerText = Math.floor((diff / 3600000) % 24);
             document.getElementById("minutos").innerText = Math.floor((diff / 60000) % 60);
             document.getElementById("segundos").innerText = Math.floor((diff / 1000) % 60);
         }
 
-        // Lógica del Corazón
         function crearCorazon() {
             const contenedor = document.getElementById("flowers-container");
             const canvas = document.getElementById("tree-canvas");
-            if (!contenedor || !canvas) return;
+            const totalFlores = 650; // Cantidad ideal para que no se vea "feo"
 
-            for (let i = 0; i < 800; i++) {
+            for (let i = 0; i < totalFlores; i++) {
                 setTimeout(() => {
                     const flor = document.createElement("div");
                     flor.className = "flower";
                     flor.innerHTML = "🌻";
                     
                     const t = Math.random() * Math.PI * 2;
-                    const r = Math.pow(Math.random(), 0.45);
+                    // El secreto está en este "0.5", hace que las flores se concentren más en los bordes y el centro
+                    const r = Math.pow(Math.random(), 0.5); 
+                    
                     const x = 16 * Math.pow(Math.sin(t), 3);
                     const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
                     
-                    const escala = 10;
+                    const escala = 10.5;
                     const centroX = canvas.offsetWidth / 2;
                     const centroY = canvas.offsetHeight * 0.45;
 
                     flor.style.left = (centroX + x * escala * r) + "px";
                     flor.style.top = (centroY + y * escala * r) + "px";
-                    flor.style.fontSize = (14 + Math.random() * 12) + "px";
+                    flor.style.fontSize = (12 + Math.random() * 10) + "px";
                     
                     contenedor.appendChild(flor);
-                }, i * 3);
+                }, i * 2);
             }
         }
 
