@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button id="musicaBtn" onclick="toggleMusica()">🎵 Reproducir Música</button>
+<audio id="miMusica" loop>
+    <source src="Mal Acostumbrao con Maria Becerra Official Video.mp3" type="audio/mpeg">
+</audio>
     <div class="main-container">
         <div id="tree-canvas" class="tree-canvas">
             <div id="flowers-container"></div>
@@ -110,6 +114,17 @@ window.onload = () => {
     if (originalOnload) originalOnload();
     createFallingPetals();
 };
+function toggleMusica() {
+    const audio = document.getElementById("miMusica");
+    const btn = document.getElementById("musicaBtn");
+    if (audio.paused) {
+        audio.play();
+        btn.innerText = "🔇 Pausar Música";
+    } else {
+        audio.pause();
+        btn.innerText = "🎵 Reproducir Música";
+    }
+}
 
     </script>
 </body>
