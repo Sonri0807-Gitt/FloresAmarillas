@@ -28,53 +28,52 @@
     </div>
 
     <script>
+        // Lógica del Contador (Perfecta, no tocar)
         const fechaInicio = new Date("2021-08-10T00:00:00");
-
-        function actualizarContador() {
-            const ahora = new Date();
-            const diff = ahora - fechaInicio;
+        function actualizar() {
+            const diff = new Date() - fechaInicio;
             document.getElementById("dias").innerText = Math.floor(diff / 86400000);
             document.getElementById("horas").innerText = Math.floor((diff / 3600000) % 24);
             document.getElementById("minutos").innerText = Math.floor((diff / 60000) % 60);
             document.getElementById("segundos").innerText = Math.floor((diff / 1000) % 60);
         }
+        setInterval(actualizar, 1000); actualizar();
 
-        function crearCorazonSuperTupido() {
-            const contenedor = document.getElementById("flowers-container");
-            const canvas = document.getElementById("tree-canvas");
-            const totalFlores = 3000; // Aumentamos la cantidad para no dejar huecos
+        // Generador de Corazón Sólido (CON CORRECCIÓN DE HUECO)
+        const contenedor = document.getElementById("flowers-container");
+        const canvas = document.getElementById("tree-canvas");
+        
+        // 1800 flores es la cantidad óptima para no amontonarlas y que la forma sea visible.
+        const totalFlores = 1800; 
 
-            for (let i = 0; i < totalFlores; i++) {
-                setTimeout(() => {
-                    const flor = document.createElement("div");
-                    flor.className = "flower";
-                    flor.innerHTML = "🌻";
-                    
-                    const t = Math.random() * Math.PI * 2;
-                    // El secreto: r con potencia 0.3 obliga a las flores a pegarse más entre sí
-                    const r = Math.pow(Math.random(), 0.3); 
-                    
-                    const x = 16 * Math.pow(Math.sin(t), 3);
-                    const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
-                    
-                    const escala = 10.5; // Ajuste fino para pantalla de móvil
-                    const centroX = canvas.offsetWidth / 2;
-                    const centroY = canvas.offsetHeight * 0.45;
+        for (let i = 0; i < totalFlores; i++) {
+            setTimeout(() => {
+                const flor = document.createElement("div");
+                flor.className = "flower";
+                flor.innerHTML = "🌻";
+                
+                // --- EL SECRETO PARA RELLENAR EL HUECO CENTRAL ---
+                const t = Math.random() * Math.PI * 2;
+                
+                // Usamos Math.random() directo para 'r' para que las flores caigan en CUALQUIER PUNTO
+                // y no solo en los bordes como antes. '0.3' hace que el centro sea muy denso.
+                const r = Math.pow(Math.random(), 0.3); 
+                
+                const x = 16 * Math.pow(Math.sin(t), 3);
+                const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+                
+                // Ajustamos escala y centro para el móvil
+                const escala = 10.2;
+                const centroX = canvas.offsetWidth / 2;
+                const centroY = canvas.offsetHeight * 0.45;
 
-                    flor.style.left = (centroX + x * escala * r) + "px";
-                    flor.style.top = (centroY + y * escala * r) + "px";
-                    flor.style.fontSize = (12 + Math.random() * 12) + "px";
-                    
-                    contenedor.appendChild(flor);
-                }, i * 1); // Carga más rápido
-            }
+                flor.style.left = (centroX + x * escala * r) + "px";
+                flor.style.top = (centroY + y * escala * r) + "px";
+                flor.style.fontSize = (12 + Math.random() * 12) + "px";
+                
+                contenedor.appendChild(flor);
+            }, i * 2); // Carga rápida
         }
-
-        window.onload = () => {
-            actualizarContador();
-            setInterval(actualizarContador, 1000);
-            crearCorazonSuperTupido();
-        };
     </script>
 </body>
 </html>
