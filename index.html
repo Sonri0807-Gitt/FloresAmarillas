@@ -28,6 +28,7 @@
     </div>
 
     <script>
+        // Lógica del Contador (Sigue igual, funciona bien)
         const fechaInicio = new Date("2021-08-10T00:00:00");
 
         function actualizarContador() {
@@ -39,10 +40,11 @@
             document.getElementById("segundos").innerText = Math.floor((diff / 1000) % 60);
         }
 
-        function crearCorazon() {
+        // Lógica del Corazón (¡AQUÍ ESTÁ EL CAMBIO!)
+        function crearCorazonFrondoso() {
             const contenedor = document.getElementById("flowers-container");
             const canvas = document.getElementById("tree-canvas");
-            const totalFlores = 650; // Cantidad ideal para que no se vea "feo"
+            const totalFlores = 1100; // Más flores para llenar
 
             for (let i = 0; i < totalFlores; i++) {
                 setTimeout(() => {
@@ -51,19 +53,21 @@
                     flor.innerHTML = "🌻";
                     
                     const t = Math.random() * Math.PI * 2;
-                    // El secreto está en este "0.5", hace que las flores se concentren más en los bordes y el centro
-                    const r = Math.pow(Math.random(), 0.5); 
+                    // El secreto para frondosidad: '0.4' concentra las flores en el centro
+                    const r = Math.pow(Math.random(), 0.4); 
                     
                     const x = 16 * Math.pow(Math.sin(t), 3);
                     const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
                     
-                    const escala = 10.5;
+                    // Escala y centro ideales para móvil
+                    const escala = 10.8;
                     const centroX = canvas.offsetWidth / 2;
                     const centroY = canvas.offsetHeight * 0.45;
 
                     flor.style.left = (centroX + x * escala * r) + "px";
                     flor.style.top = (centroY + y * escala * r) + "px";
-                    flor.style.fontSize = (12 + Math.random() * 10) + "px";
+                    // Tamaños variados para naturalidad
+                    flor.style.fontSize = (13 + Math.random() * 11) + "px";
                     
                     contenedor.appendChild(flor);
                 }, i * 2);
@@ -73,7 +77,7 @@
         window.onload = () => {
             actualizarContador();
             setInterval(actualizarContador, 1000);
-            crearCorazon();
+            crearCorazonFrondoso();
         };
     </script>
 </body>
